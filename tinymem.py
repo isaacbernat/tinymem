@@ -26,7 +26,16 @@ DELAY_MS = 1000
 
 
 def print_sequence():
-    pass  # TODO
+    for index, val in enumerate(sequence):
+        pre_print_time = time.ticks_ms()
+        if index > max_pos:
+            break
+        # TODO play audio
+        thumby.display.fill(0)
+        thumby.display.drawText(MEM_KEYS[val], 4*index, 16, 1)
+        thumby.display.update()
+        while(time.ticks_ms() - pre_print_time < DELAY_MS):
+            pass
 
 
 def ask_sequence():
@@ -38,6 +47,7 @@ def game_over():
 
 
 while(game_running == True):
+    print_sequence()
     pre_print_time = time.ticks_ms()
     thumby.display.fill(0)
     thumby.display.drawText("WAIT NEXT", 0, 0, 1)
