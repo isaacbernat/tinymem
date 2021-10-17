@@ -9,12 +9,6 @@ thumby.display.drawText("hard:arrw", 0, 16, 1)
 thumby.display.drawText("ONLY EASY", 0, 32, 1)
 thumby.display.update()
 
-# TODO use this to select easy vs hard
-while(thumby.actionPressed()):
-    pass
-while(not thumby.actionPressed()):
-    pass
-
 
 sequence = [random.randint(0, 1) for i in range(10)]
 max_pos = 0
@@ -31,13 +25,21 @@ def wait(init_time=None, duration_ms=1000):
         pass
 
 
+def wait_press():
+    while(thumby.actionPressed()):
+        pass
+    while(not thumby.actionPressed()):
+        pass
+
+
 def print_sequence():
     thumby.display.fill(0)
-    thumby.display.drawText("WATCH KEY", 0, 0, 1)
-    thumby.display.drawText("SEQUENCE", 0, 8, 1)
+    thumby.display.drawText("watch key", 0, 0, 1)
+    thumby.display.drawText("sequence", 0, 8, 1)
     thumby.display.drawText("CAREFULLY", 0, 16, 1)
+    thumby.display.drawText("press A/B", 0, 32, 1)
     thumby.display.update()
-    wait()
+    wait_press()
 
     for index, val in enumerate(sequence):
         if index > max_pos:
@@ -57,6 +59,8 @@ def game_over():
     pass  # TODO
 
 
+# TODO use this to select easy vs hard
+wait_press()
 while(game_running):
     print_sequence()
     thumby.display.fill(0)
