@@ -6,8 +6,6 @@ import time
 sequence = []
 max_pos = 0
 
-game_running = True
-
 MEM_KEYS = ["A", "B"]  # TODO sth to display bigger on screen
 DELAY_MS = 1000
 
@@ -26,6 +24,7 @@ def init_game():
     thumby.display.drawText("hard:arrw", 0, 16, 1)
     thumby.display.drawText("ONLY EASY", 0, 32, 1)
     thumby.display.update()
+    random.seed(time.ticks_ms())
     sequence = [random.randint(0, 1) for i in range(100)]
     max_pos = 0
 
@@ -79,7 +78,8 @@ def game_over():
     thumby.display.drawText("press ANY", 0, 32, 1)
     thumby.display.update()
     wait_press()
-    pass
+    init_game()
+    wait_press()
 
 
 def ask_sequence():
@@ -101,7 +101,6 @@ def ask_sequence():
             thumby.display.drawText(f"{current_pos} done" , 0, 8, 1)
             thumby.display.drawText(f"{max_pos - current_pos + 1} left" , 0, 16, 1)
             thumby.display.update()
-            wait()
         else:
             game_over()
             break
@@ -110,7 +109,7 @@ def ask_sequence():
 
 init_game()
 wait_press()  # TODO use this to select easy vs hard
-while(game_running):
+while(True):
     print_sequence()
     ask_sequence()
     max_pos += 1
