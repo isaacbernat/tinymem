@@ -26,7 +26,7 @@ def init_game():
     thumby.display.drawText("hard:arrw", 0, 16, 1)
     thumby.display.drawText("ONLY EASY", 0, 32, 1)
     thumby.display.update()
-    sequence = [random.randint(0, 1) for i in range(10)]
+    sequence = [random.randint(0, 1) for i in range(100)]
     max_pos = 0
 
 
@@ -74,8 +74,8 @@ def game_over():
     thumby.display.fill(0)
     thumby.display.drawText("GAME OVER", 0, 0, 1)
     thumby.display.drawText("your mem=", 0, 8, 1)
-    thumby.display.drawText(str(max_pos), 0, 16, 1)
-    thumby.display.drawText("bits", 0, 24, 1)
+    thumby.display.drawText(f"{str(max_pos)} bits", 0, 16, 1)
+
     thumby.display.drawText("press ANY", 0, 32, 1)
     thumby.display.update()
     wait_press()
@@ -98,7 +98,8 @@ def ask_sequence():
             current_pos += 1
             thumby.display.fill(0)
             thumby.display.drawText("correct!", 0, 0, 1)
-            thumby.display.drawText(str(c), 0, 8, 1)
+            thumby.display.drawText(f"{current_pos} done" , 0, 8, 1)
+            thumby.display.drawText(f"{max_pos - current_pos + 1} left" , 0, 16, 1)
             thumby.display.update()
             wait()
         else:
