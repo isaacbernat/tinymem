@@ -52,22 +52,30 @@ def print_sequence():
 
 
 def ask_sequence():
-    pass  # TODO
+    thumby.display.fill(0)
+    thumby.display.drawText("repeat", 0, 0, 1)
+    thumby.display.update()
+    wait()
+
+    current_post = 0
+    while (current_post < max_pos):
+        pass
 
 
-def game_over():
-    pass  # TODO
+def game_over():  # TODO
+    thumby.display.fill(0)
+    thumby.display.drawText("GAME OVER", 0, 0, 1)
+    thumby.display.drawText("your mem=", 0, 8, 1)
+    thumby.display.drawText(str(max_pos), 0, 16, 1)
+    thumby.display.drawText("bits", 0, 24, 1)
+    thumby.display.drawText("press A/B", 0, 32, 1)
+    thumby.display.update()
+    wait_press()
+    pass
 
 
 # TODO use this to select easy vs hard
 wait_press()
 while(game_running):
     print_sequence()
-    thumby.display.fill(0)
-    thumby.display.drawText("WAIT NEXT", 0, 0, 1)
-    thumby.display.drawText("ITERATION", 0, 8, 1)
-    thumby.display.drawText(str(max_pos), 0, 16, 1)
-    thumby.display.drawText(str(sequence), 0, 32, 1)
-    thumby.display.update()
     max_pos += 1
-    wait()
