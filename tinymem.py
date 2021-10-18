@@ -17,17 +17,18 @@ def wait(init_time=None, duration_ms=1000):
         pass
 
 
+def print_text(lines):
+    thumby.display.fill(0)
+    for index, content in enumerate(lines):
+        thumby.display.drawText(content, 0, 8 * index, 1)
+    thumby.display.update()
+
+
 def init_game():
     global max_pos, difficulty, sequence
-    thumby.display.fill(0)
-    thumby.display.drawText("TinyMem", 8, 0, 1)
-    thumby.display.drawText("easy:A/B", 0, 8, 1)
-    thumby.display.drawText("hard:arrw", 0, 16, 1)
-    thumby.display.drawText("by:Isaac", 0, 24, 1)
-    thumby.display.drawText("   Bernat", 0, 32, 1)
-    thumby.display.update()
+    print_text([" TinyMem", "easy:A/B", "hard:arrw", "by:Isaac", "   Bernat"])
     random.seed(time.ticks_ms())
-    max_pos = 0
+    max_pos = - 1
     c = wait_press()
     if c < 2:
         difficulty = 1
@@ -61,12 +62,7 @@ def wait_press():
 
 
 def print_sequence():
-    thumby.display.fill(0)
-    thumby.display.drawText("watch key", 0, 0, 1)
-    thumby.display.drawText("sequence", 0, 8, 1)
-    thumby.display.drawText("CAREFULLY", 0, 16, 1)
-    thumby.display.drawText("press ANY", 0, 32, 1)
-    thumby.display.update()
+    print_text(["watch key", "sequence", "CAREFULLY", "", "press ANY"])
     wait_press()
 
     for index, val in enumerate(sequence):
@@ -80,23 +76,13 @@ def print_sequence():
 
 
 def game_over():
-    thumby.display.fill(0)
-    thumby.display.drawText("GAME OVER", 0, 0, 1)
-    thumby.display.drawText("your mem=", 0, 8, 1)
-    thumby.display.drawText(f"{str(max_pos*difficulty)} bits", 0, 16, 1)
-
-    thumby.display.drawText("press ANY", 0, 32, 1)
-    thumby.display.update()
+    print_text(["GAME OVER", "your mem=", f"{str(max_pos*difficulty)} bits", "", "press ANY"])
     wait_press()
     init_game()
 
 
 def ask_sequence():
-    thumby.display.fill(0)
-    thumby.display.drawText("your turn", 0, 0, 1)
-    thumby.display.drawText("repeat!", 0, 8, 1)
-    thumby.display.update()
-
+    print_text(["your turn", "repeat"])
     current_pos = 0
     while (current_pos <= max_pos):
         if sequence[current_pos] == wait_press():
@@ -113,6 +99,7 @@ def ask_sequence():
 
 
 init_game()
+max_pos += 1
 while(True):
     print_sequence()
     ask_sequence()
