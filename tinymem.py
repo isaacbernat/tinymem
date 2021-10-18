@@ -54,9 +54,7 @@ def wait_press(c=getcharinputNew()):
 def print_sequence():
     print_text(["watch key", "sequence", "CAREFULLY", "", "press ANY"])
     wait_press()
-    for index, val in enumerate(sequence):
-        if index > max_pos:
-            break
+    for index, val in enumerate(sequence[:max_pos + 1]):
         # TODO play audio
         print_text(["" for i in range(index % 4)] + [MEM_KEYS[val]])
         init_time = time.ticks_ms()
