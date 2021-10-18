@@ -58,9 +58,7 @@ def print_sequence():
         if index > max_pos:
             break
         # TODO play audio
-        thumby.display.fill(0)
-        thumby.display.drawText(MEM_KEYS[val], 4 * index, 16, 1)
-        thumby.display.update()
+        print_text(["" for i in range(index % 4)] + [MEM_KEYS[val]])
         init_time = time.ticks_ms()
         while(time.ticks_ms() - init_time < 1000):
             pass
