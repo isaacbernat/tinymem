@@ -29,8 +29,7 @@ def init_game():
     print_text([" TinyMem", "easy:A/B", "hard:arrw", "by:Isaac", "   Bernat"])
     random.seed(time.ticks_ms())
     max_pos = - 1
-    c = wait_press()
-    if c < 2:
+    if wait_press() < 2:
         difficulty = 1
         sequence = [random.randint(0, 1) for i in range(100)]
     else:
@@ -54,8 +53,7 @@ def getcharinputNew():
     return None
 
 
-def wait_press():
-    c = getcharinputNew()
+def wait_press(c=getcharinputNew()):
     while(c is None):
         c = getcharinputNew()
     return c
