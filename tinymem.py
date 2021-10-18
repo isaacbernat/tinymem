@@ -6,15 +6,7 @@ import time
 sequence = []
 max_pos = 0
 difficulty = 0
-
 MEM_KEYS = ["A", "B", "UP", "RIGHT", "DOWN", "LEFT"]  # TODO bigger onscreen
-DELAY_MS = 1000
-
-
-def wait(init_time=None, duration_ms=1000):
-    init_time = time.ticks_ms() if not init_time else init_time
-    while(time.ticks_ms() - init_time < duration_ms):
-        pass
 
 
 def print_text(lines):
@@ -70,7 +62,9 @@ def print_sequence():
         thumby.display.fill(0)
         thumby.display.drawText(MEM_KEYS[val], 4 * index, 16, 1)
         thumby.display.update()
-        wait()
+        init_time = time.ticks_ms()
+        while(time.ticks_ms() - init_time < 1000):
+            pass
 
 
 def game_over():
