@@ -54,7 +54,6 @@ def wait_press(c=getcharinputNew()):
 def print_sequence():
     print_text(["watch key", "sequence", "CAREFULLY", "", "press ANY"])
     wait_press()
-
     for index, val in enumerate(sequence):
         if index > max_pos:
             break
@@ -79,11 +78,7 @@ def ask_sequence():
     while (current_pos <= max_pos):
         if sequence[current_pos] == wait_press():
             current_pos += 1
-            thumby.display.fill(0)
-            thumby.display.drawText("correct!", 0, 0, 1)
-            thumby.display.drawText(f"{current_pos} done" , 0, 8, 1)
-            thumby.display.drawText(f"{max_pos - current_pos + 1} left" , 0, 16, 1)
-            thumby.display.update()
+            print_text(["correct!", f"{current_pos} done", f"{max_pos - current_pos + 1} left"])
         else:
             game_over()
             break
