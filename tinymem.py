@@ -4,9 +4,9 @@ import time
 
 
 sequence = []
-max_pos = 0
-difficulty = 0
+max_pos = difficulty = 0
 MEM_KEYS = ["A", "B", "UP", "RIGHT", "DOWN", "LEFT"]  # TODO bigger onscreen
+freq = [440, 330, 659, 554, 440, 330]
 
 
 def print_text(lines):
@@ -55,11 +55,9 @@ def print_sequence():
     print_text(["watch key", "sequence", "CAREFULLY", "", "press ANY"])
     wait_press()
     for index, val in enumerate(sequence[:max_pos + 1]):
-        # TODO play audio
         print_text(["" for i in range(index % 4)] + [MEM_KEYS[val]])
+        thumby.audio.playBlocking(freq[val], 1000)
         init_time = time.ticks_ms()
-        while(time.ticks_ms() - init_time < 1000):
-            pass
 
 
 def game_over():
@@ -73,6 +71,7 @@ def ask_sequence():
     current_pos = 0
     while (current_pos <= max_pos):
         if sequence[current_pos] == wait_press():
+            thumby.audio.play(freq[sequence[current_pos]], 2000)
             current_pos += 1
             print_text(["correct!", f"{current_pos} done", f"{max_pos - current_pos + 1} left"])
         else:
