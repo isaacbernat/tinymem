@@ -1,16 +1,23 @@
-import thumby
-import random
-import time
+import random, time, thumby
 
+controls_map = bytearray([224,32,32,32,32,63,1,1,1,1,1,1,1,1,1,63,32,32,32,32,224,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,1,1,1,1,1,1,1,255,
+            255,128,128,128,128,128,0,0,0,0,0,0,0,0,0,128,128,128,128,128,255,0,0,0,0,0,0,0,0,0,0,0,252,4,4,4,4,4,4,4,252,0,7,4,4,4,4,4,4,4,7,
+            0,0,0,0,0,31,16,16,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0])
+controls_sprite = thumby.Sprite(51, 21, controls_map, 10, 10)  # L. Wienclaw
 
-sequence = []
-max_pos = difficulty = 0
+sequence, max_pos, difficulty = [], 0, 0
 MEM_KEYS = ["A", "B", "UP", "RIGHT", "DOWN", "LEFT"]  # TODO bigger onscreen
 freq = [440, 330, 659, 554, 440, 330]
 
 
-def print_text(lines):
-    thumby.display.fill(0)
+def print_sprite(clear=True):
+    clear and thumby.display.fill(0)
+    thumby.display.drawSprite(controls_sprite)
+    thumby.display.update()
+
+
+def print_text(lines, clear=True):
+    clear and thumby.display.fill(0)
     for index, content in enumerate(lines):
         thumby.display.drawText(content, 0, 8 * index, 1)
     thumby.display.update()
@@ -18,7 +25,8 @@ def print_text(lines):
 
 def init_game():
     global max_pos, difficulty, sequence
-    print_text([" TinyMem", "easy:A/B", "hard:arrw", "by:Isaac", "   Bernat"])
+    print_text(["  Tiny Mem!", "", "", "", "  hard;easy"])
+    print_sprite(clear=False)
     random.seed(time.ticks_ms())
     max_pos = - 1
     if wait_press() < 2:
@@ -70,13 +78,13 @@ def ask_sequence():
     print_text(["your turn", "repeat"])
     current_pos = 0
     while (current_pos <= max_pos):
-        if sequence[current_pos] == wait_press():
-            thumby.audio.play(freq[sequence[current_pos]], 2000)
-            current_pos += 1
-            print_text(["correct!", f"{current_pos} done", f"{max_pos - current_pos + 1} left"])
-        else:
+        if sequence[current_pos] != wait_press():
             game_over()
             break
+        thumby.audio.stop()
+        thumby.audio.play(freq[sequence[current_pos]], 1000)
+        current_pos += 1
+        print_text(["correct!", f"{current_pos} done", f"{max_pos - current_pos + 1} left"])
     return
 
 
@@ -86,3 +94,22 @@ while(True):
     print_sequence()
     ask_sequence()
     max_pos += 1
+
+
+# # https://thumby.us/API/Buttons/
+
+
+# import thumby
+
+# thumby.display.setFPS(1)
+
+# while(1):
+#     thumby.display.fill(0) # Fill canvas to black
+#     thumby.display.setFont("/lib/font5x7.bin", 5, 7, 1)
+#     thumby.display.drawText("Font5x7", 5, 16, 1)
+#     thumby.display.update()
+
+#     thumby.display.fill(0)
+#     thumby.display.setFont("/lib/font8x8.bin", 8, 8, 1)
+#     thumby.display.drawText("Font8x8", 5, 16, 1)
+#     thumby.display.update()
