@@ -7,7 +7,7 @@ controls_sprite = thumby.Sprite(51, 21, controls_map, 10, 10)  # L. Wienclaw
 
 sequence, max_pos, difficulty = [], 0, 0
 MEM_KEYS = ["A", "B", "UP", "RIGHT", "DOWN", "LEFT"]  # TODO bigger onscreen
-freq = [440, 330, 659, 554, 440, 330]
+freq = [440, 330, 659, 554, 440, 330]  # TODO try around 5000-6000hz
 
 
 def print_sprite(clear=True):
@@ -38,19 +38,7 @@ def init_game():
 
 
 def getcharinputNew():
-    if(thumby.buttonA.justPressed()):
-        return 0
-    if(thumby.buttonB.justPressed()):
-        return 1
-    if(thumby.buttonU.justPressed()):
-        return 2
-    if(thumby.buttonR.justPressed()):
-        return 3
-    if(thumby.buttonD.justPressed()):
-        return 4
-    if(thumby.buttonL.justPressed()):
-        return 5
-    return None
+    return (thumby.buttonL.justPressed() and 5) or (thumby.buttonD.justPressed() and 4) or (thumby.buttonR.justPressed() and 3) or (thumby.buttonU.justPressed() and 2) or (thumby.buttonB.justPressed() and 1) or (thumby.buttonA.justPressed() and 0) or None
 
 
 def wait_press(c=getcharinputNew()):
