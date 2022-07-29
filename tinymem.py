@@ -32,14 +32,10 @@ def wait_press(c=None):
     return c
 
 
-def print_sequence(max_pos, sequence):
-    for index, val in enumerate(sequence[:max_pos + 1]):
-        print_sprite(val=val, text=[f"  key={MEM_KEYS[val].letter}", "", "", "", f"  num={index + 1}"])
-        init_time = time.ticks_ms()
-
-
 def ask_sequence(max_pos, sequence, current_pos=0):
-    print_sprite(text=["  your turn", "", "", "", "  repeat"])
+    for index, val in enumerate(sequence[:max_pos + 1]):  # print sequence
+        print_sprite(val=val, text=[f"  key={MEM_KEYS[val].letter}", "", "", "", f"  num={index + 1}"])
+    print_sprite(text=["  your turn", "", "", "", "  repeat"])  # ask sequence
     while (current_pos <= max_pos):
         if sequence[current_pos] != wait_press():  # GAME OVER
             print_sprite(text=["  your mem=", "", "", "", f"  {str(max_pos*(min(sequence) == 1 or 2))} bits"])
@@ -52,5 +48,4 @@ def ask_sequence(max_pos, sequence, current_pos=0):
 
 max_pos, sequence = init_game()
 while(True):
-    print_sequence(max_pos, sequence)
     max_pos, sequence = ask_sequence(max_pos, sequence)
