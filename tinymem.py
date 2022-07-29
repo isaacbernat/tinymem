@@ -26,16 +26,9 @@ def init_game():
     return 0, [random.randint(*value_range) for i in range(100)]
 
 
-def getcharinputNew(display=False):
-    val = (thumby.buttonL.justPressed() and 6) or (thumby.buttonD.justPressed() and 5) or (thumby.buttonR.justPressed() and 4) or (thumby.buttonU.justPressed() and 3) or (thumby.buttonB.justPressed() and 2) or (thumby.buttonA.justPressed() and 1) or None
-    if val is not None and display:
-        print_sprite(val=val)
-    return val
-
-
-def wait_press(c=getcharinputNew(display=False)):
+def wait_press(c=None):
     while(c is None):
-        c = getcharinputNew()
+        c = (thumby.buttonL.justPressed() and 6) or (thumby.buttonD.justPressed() and 5) or (thumby.buttonR.justPressed() and 4) or (thumby.buttonU.justPressed() and 3) or (thumby.buttonB.justPressed() and 2) or (thumby.buttonA.justPressed() and 1) or None
     return c
 
 
