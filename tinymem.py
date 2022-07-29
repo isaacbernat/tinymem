@@ -23,12 +23,10 @@ def init_game():
     print_sprite(text=["  Tiny Mem!", "", "", "", "  hard;easy"])
     random.seed(time.ticks_ms())
     if wait_press() < 2:
-        difficulty = 1
         sequence = [random.randint(0, 1) for i in range(100)]
     else:
-        difficulty = 2
         sequence = [random.randint(2, 5) for i in range(100)]
-    return 0, difficulty, sequence
+    return 0, sequence
 
 
 def getcharinputNew(display=False):
@@ -50,19 +48,19 @@ def print_sequence(max_pos, sequence):
         init_time = time.ticks_ms()
 
 
-def ask_sequence(max_pos, difficulty, sequence, current_pos=0):
+def ask_sequence(max_pos, sequence, current_pos=0):
     print_sprite(text=["  your turn", "", "", "", "  repeat"])
     while (current_pos <= max_pos):
         if sequence[current_pos] != wait_press():  # GAME OVER
-            print_sprite(text=["  your mem=", "", "", "", f"  {str(max_pos*difficulty)} bits"])
+            print_sprite(text=["  your mem=", "", "", "", f"  {str(max_pos*(min(sequence) or 1))} bits"])
             wait_press()
             return init_game()
         current_pos += 1
         print_sprite(val=sequence[current_pos - 1], text=[f"  {current_pos} done", "", "", "", f"  {max_pos - current_pos + 1} left"])
-    return max_pos + 1, difficulty, sequence
+    return max_pos + 1, sequence
 
 
-max_pos, difficulty, sequence = init_game()
+max_pos, sequence = init_game()
 while(True):
     print_sequence(max_pos, sequence)
-    max_pos, difficulty, sequence = ask_sequence(max_pos, difficulty, sequence)
+    max_pos, sequence = ask_sequence(max_pos, sequence)
