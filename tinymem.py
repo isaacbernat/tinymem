@@ -22,11 +22,8 @@ def print_sprite(val=6, text=["", "", "", "", ""]):
 def init_game():
     print_sprite(text=["  Tiny Mem!", "", "", "", "  hard;easy"])
     random.seed(time.ticks_ms())
-    if wait_press() < 2:
-        sequence = [random.randint(0, 1) for i in range(100)]
-    else:
-        sequence = [random.randint(2, 5) for i in range(100)]
-    return 0, sequence
+    value_range = (0, 1) if wait_press() < 2 else (2, 5)
+    return 0, [random.randint(*value_range) for i in range(100)]
 
 
 def getcharinputNew(display=False):
