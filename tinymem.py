@@ -6,28 +6,28 @@ controls_map = bytearray([224,32,32,32,32,63,1,1,1,1,1,1,1,1,1,63,32,32,32,32,22
                           0,0,0,0,0,31,16,16,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0])
 controls_sprite = thumby.Sprite(49, 21, controls_map, 10, 10)  # sprite based on Laveréna Wienclaw
 Button = collections.namedtuple("Button", "letter freq x y")  # TODO try freq around 5000-6000hz
-MEM_KEYS = [Button("A", 440, 52, 12), Button("B", 330, 42, 22), Button("U", 659, 18, 12), Button("R", 554, 24, 17), Button("D", 440, 18, 22), Button("L", 330, 12, 17), Button("", 20, 0, 0)]
+MEM_KEYS = [Button("", 20, 0, 0), Button("A", 440, 52, 12), Button("B", 330, 42, 22), Button("U", 659, 18, 12), Button("R", 554, 24, 17), Button("D", 440, 18, 22), Button("L", 330, 12, 17)]
 
 
-def print_sprite(val=6, text=["", "", "", "", ""]):
+def print_sprite(val=0, text=["", "", "", "", ""]):
     thumby.display.fill(0)
     for index, content in enumerate(text):
         thumby.display.drawText(content, 0, 8 * index, 1)
     thumby.display.drawSprite(controls_sprite)
     thumby.display.drawText(MEM_KEYS[val].letter, MEM_KEYS[val].x, MEM_KEYS[val].y, 1)
     thumby.display.update()
-    thumby.audio.playBlocking(MEM_KEYS[val].freq, val == 6 or 1000)
+    thumby.audio.playBlocking(MEM_KEYS[val].freq, val == 0 or 1000)
 
 
 def init_game():
     print_sprite(text=["  Tiny Mem!", "", "", "", "  hard;easy"])
     random.seed(time.ticks_ms())
-    value_range = (0, 1) if wait_press() < 2 else (2, 5)
+    value_range = (1, 2) if wait_press() < 3 else (3, 6)
     return 0, [random.randint(*value_range) for i in range(100)]
 
 
 def getcharinputNew(display=False):
-    val = (thumby.buttonL.justPressed() and 5) or (thumby.buttonD.justPressed() and 4) or (thumby.buttonR.justPressed() and 3) or (thumby.buttonU.justPressed() and 2) or (thumby.buttonB.justPressed() and 1) or (thumby.buttonA.justPressed() and 0) or None
+    val = (thumby.buttonL.justPressed() and 6) or (thumby.buttonD.justPressed() and 5) or (thumby.buttonR.justPressed() and 4) or (thumby.buttonU.justPressed() and 3) or (thumby.buttonB.justPressed() and 2) or (thumby.buttonA.justPressed() and 1) or None
     if val is not None and display:
         print_sprite(val=val)
     return val
@@ -49,7 +49,7 @@ def ask_sequence(max_pos, sequence, current_pos=0):
     print_sprite(text=["  your turn", "", "", "", "  repeat"])
     while (current_pos <= max_pos):
         if sequence[current_pos] != wait_press():  # GAME OVER
-            print_sprite(text=["  your mem=", "", "", "", f"  {str(max_pos*(min(sequence) or 1))} bits"])
+            print_sprite(text=["  your mem=", "", "", "", f"  {str(max_pos*(min(sequence) == 1 or 2))} bits"])
             wait_press()
             return init_game()
         current_pos += 1
