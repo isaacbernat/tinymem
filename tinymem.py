@@ -9,8 +9,8 @@ Button = collections.namedtuple("Button", "letter freq x y")  # TODO try freq ar
 MEM_KEYS = [Button("A", 440, 52, 12), Button("B", 330, 42, 22), Button("U", 659, 18, 12), Button("R", 554, 24, 17), Button("D", 440, 18, 22), Button("L", 330, 12, 17), Button("", 20, 0, 0)]
 
 
-def print_sprite(val=6, clear=True, text=["", "", "", "", ""]):
-    clear and thumby.display.fill(0)
+def print_sprite(val=6, text=["", "", "", "", ""]):
+    thumby.display.fill(0)
     for index, content in enumerate(text):
         thumby.display.drawText(content, 0, 8 * index, 1)
     thumby.display.drawSprite(controls_sprite)
