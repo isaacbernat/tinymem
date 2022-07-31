@@ -18,8 +18,8 @@ def show(val=0, text=["", "", "", "", ""]):
 
 def start():
     show(text=["  Tiny Mem!", "", "", "", "  hard;easy"])
-    random.seed(time.ticks_ms())
     value_range = (1, 2) if wait_press() < 3 else (3, 6)
+    random.seed(time.ticks_ms())
     return 0, [random.randint(*value_range) for i in range(100)]
 
 def wait_press(c=None):
