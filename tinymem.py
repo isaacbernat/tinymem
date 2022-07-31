@@ -4,8 +4,8 @@ controls_map = bytearray([224,32,32,32,32,63,1,1,1,1,1,1,1,1,1,63,32,32,32,32,22
     255,128,128,128,128,128,0,0,0,0,0,0,0,0,0,128,128,128,128,128,255,0,0,0,0,0,0,0,0,0,252,4,4,4,4,4,4,4,252,0,7,4,4,4,4,4,4,4,7,
     0,0,0,0,0,31,16,16,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0])
 controls_sprite = thumby.Sprite(49, 21, controls_map, 10, 10)  # sprite based on Laveréna Wienclaw
-Button = collections.namedtuple("Button", "letter freq x y")  # TODO try freq around 5000-6000hz
-KEYS = [Button("", 20, 0, 0), Button("A", 440, 52, 12), Button("B", 330, 42, 22), Button("U", 659, 18, 12), Button("R", 554, 24, 17), Button("D", 440, 18, 22), Button("L", 330, 12, 17)]
+Button = collections.namedtuple("Button", "letter freq x y")
+KEYS = [Button("", 20, 0, 0), Button("A", 7458, 52, 12), Button("B", 7902, 42, 22), Button("U", 10548, 18, 12), Button("R", 8870, 24, 17), Button("D", 7458, 18, 22), Button("L", 7902, 12, 17)]
 
 def show(val=0, text=["", "", "", "", ""]):
     thumby.display.fill(0)
