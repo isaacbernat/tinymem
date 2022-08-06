@@ -1,15 +1,20 @@
 # tinymem
 [Thumby](https://thumby.us/) Simon-inspired game where players test their tiny short term memory.
 
-[tinymem_video.webm](https://user-images.githubusercontent.com/2509809/183149073-1338aad7-a044-4f8b-9d0f-7ac3a8d719fc.webm)
+## Footage
+<p float="left">
+    <img width="284.5" alt="Picture of the game" src="https://user-images.githubusercontent.com/2509809/183259656-319d353f-67fd-465a-b7b3-7d8b225cdc92.png">
+    <img width="543" alt="zoomed in screenshot" src="https://user-images.githubusercontent.com/2509809/183260526-779b2931-9901-49df-9c77-ca8cbb05fd46.png">
+</p>
+This is how the game looks on real hardware. USB pen drive, microSD and adapter added for size comparison.
 
-## how to play?
+## How to play?
 - Repeat key sequences (hard->arrows; easy->buttons) following sounds and screen indications.
 - You can try it on a [Thumby emulator here](https://code.thumby.us/)
 
 https://user-images.githubusercontent.com/2509809/183148998-b59710fb-eb5c-4f07-8ce5-5c32f16d5ef1.mp4
 
-## why?
+## Why?
 I wanted to create a game as a Proof of Concept that:
 
 - Is simple to understand (code):
@@ -31,4 +36,4 @@ I wanted to create a game as a Proof of Concept that:
     - Link Cable... ok this I haven't... I couldn't decide between a couple of ideas:
         - a) one player, two controllers. That is: not only which button matters, but also which Thumby you click!
         - b) versus game, one player choses the new element of the sequence every time. That is, instead of being random.
-    - Did I miss sth relevant? E.g. setting a different CPU clock frequency.
+    - Did I miss sth relevant? E.g. setting different FPS.
