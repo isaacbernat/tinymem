@@ -2,10 +2,8 @@
 [Thumby](https://thumby.us/) Simon-inspired game where players test their tiny short term memory.
 
 ## Footage
-<p float="left">
-    <img width="284.5" alt="Picture of the game" src="https://user-images.githubusercontent.com/2509809/183259656-319d353f-67fd-465a-b7b3-7d8b225cdc92.png">
-    <img width="543" alt="zoomed in screenshot" src="https://user-images.githubusercontent.com/2509809/183260526-779b2931-9901-49df-9c77-ca8cbb05fd46.png">
-</p>
+<img width="1253" alt="Picture of the game; also zoomed in screenshot" src="https://user-images.githubusercontent.com/2509809/183260970-860f0c97-1312-4bf9-8b8d-ea85ed24f0b8.png">
+
 This is how the game looks on real hardware. USB pen drive, microSD and adapter added for size comparison.
 
 ## How to play?
