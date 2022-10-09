@@ -6,6 +6,10 @@
 
 This is how the game looks on real hardware. USB pen drive, microSD and adapter added for size comparison.
 
+https://user-images.githubusercontent.com/2509809/194734050-b08deefd-cbbf-4409-b41d-31215352f38c.mp4
+
+Video using a real device above. Audio volume is low and the image blurry (feel free to add a PR with a better recording).
+
 ## How to play?
 - Repeat key sequences (hard->arrows; easy->buttons) following sounds and screen indications.
 - You can try it on a [Thumby emulator here](https://code.thumby.us/)
