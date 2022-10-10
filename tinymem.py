@@ -34,8 +34,8 @@ def turn(max_pos, sequence, current_pos=0):
             show(text=["  your mem=", "", "", "", f"  {str(max_pos*(min(sequence) == 1 or 2))} bits"])
             wait_press()
             return start()
+        show(val=sequence[current_pos], text=[f"  {current_pos + 1} done", "", "", "", f"  {max_pos - current_pos} left"])
         current_pos += 1
-        show(val=sequence[current_pos - 1], text=[f"  {current_pos} done", "", "", "", f"  {max_pos - current_pos + 1} left"])
     return max_pos + 1, sequence
 
 max_pos, sequence = start()
