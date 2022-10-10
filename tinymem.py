@@ -1,8 +1,6 @@
 import random, time, thumby, collections
 
-controls_map = bytearray([224,32,32,32,32,63,1,1,1,1,1,1,1,1,1,63,32,32,32,32,224,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,1,1,1,1,1,1,1,255,
-    255,128,128,128,128,128,0,0,0,0,0,0,0,0,0,128,128,128,128,128,255,0,0,0,0,0,0,0,0,0,252,4,4,4,4,4,4,4,252,0,7,4,4,4,4,4,4,4,7,
-    0,0,0,0,0,31,16,16,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0])
+controls_map = bytearray([224,32,32,32,32,63,1,1,1,1,1,1,1,1,1,63,32,32,32,32,224,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,1,1,1,1,1,1,1,255,255,128,128,128,128,128,0,0,0,0,0,0,0,0,0,128,128,128,128,128,255,0,0,0,0,0,0,0,0,0,252,4,4,4,4,4,4,4,252,0,7,4,4,4,4,4,4,4,7,0,0,0,0,0,31,16,16,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,16,16,16,16,16,16,16,31,0,0,0,0,0,0,0,0,0,0])
 controls_sprite = thumby.Sprite(49, 21, controls_map, 10, 10)  # sprite based on Laveréna Wienclaw
 Button = collections.namedtuple("Button", "letter freq x y")
 KEYS = [Button("", 20, 0, 0), Button("A", 7458, 52, 12), Button("B", 7902, 42, 22), Button("U", 10548, 18, 12), Button("R", 8870, 24, 17), Button("D", 7458, 18, 22), Button("L", 7902, 12, 17)]
@@ -36,8 +34,8 @@ def turn(max_pos, sequence, current_pos=0):
             show(text=["  your mem=", "", "", "", f"  {str(max_pos*(min(sequence) == 1 or 2))} bits"])
             wait_press()
             return start()
+        show(val=sequence[current_pos], text=[f"  {current_pos + 1} done", "", "", "", f"  {max_pos - current_pos} left"])
         current_pos += 1
-        show(val=sequence[current_pos - 1], text=[f"  {current_pos} done", "", "", "", f"  {max_pos - current_pos + 1} left"])
     return max_pos + 1, sequence
 
 max_pos, sequence = start()
