@@ -1,5 +1,6 @@
 # tinymem
-[Thumby](https://thumby.us/) Simon-inspired game where players test their tiny short term memory.
+- [Thumby](https://thumby.us/) Simon-inspired game where players test their tiny short term memory.
+- I presented the game at PyDayBCN and there's a [companion repository with slides](https://github.com/isaacbernat/presentations/tree/master/tinymem) with further commentary.
 
 ## Footage
 <img width="1253" alt="Picture of the game; also zoomed in screenshot" src="https://user-images.githubusercontent.com/2509809/183260970-860f0c97-1312-4bf9-8b8d-ea85ed24f0b8.png">
